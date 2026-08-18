@@ -1,0 +1,298 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  aspect-ratio: 4 / 5;
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.featured {
+  aspect-ratio: 21 / 9;
+}
+
+.card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25);
+  outline: 2px solid var(--color-mustard);
+  outline-offset: 2px;
+}
+
+.card:active {
+  transform: scale(0.98);
+}
+
+@media (hover: hover) {
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.objectLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  transition: transform 300ms ease;
+}
+
+@media (hover: hover) {
+  .card:hover .objectLayer {
+    transform: scale(1.05);
+  }
+}
+
+.photoImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.photoScrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.2) 45%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.textZone {
+  position: relative;
+  z-index: 2;
+  padding: 16px 52px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.captionRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.caption {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.freshTag {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-lime);
+}
+
+.divider {
+  height: 1px;
+  width: 100%;
+}
+
+.title {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.featured .title {
+  font-size: 22px;
+}
+
+.arrowButton {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  z-index: 3;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-mustard);
+  color: var(--color-navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* ---------- 모달 / 바텀시트 ---------- */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(6, 22, 43, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 100;
+  animation: backdrop-in 200ms ease;
+}
+
+@keyframes backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal {
+  background: var(--color-cream);
+  width: 100%;
+  max-width: 560px;
+  max-height: 85vh;
+  overflow-y: auto;
+  border-radius: 10px;
+  animation: modal-pop 220ms ease;
+}
+
+@keyframes modal-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modalImageWrap {
+  position: relative;
+  aspect-ratio: 16 / 9;
+}
+
+.modalPhotoImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.photoCredit {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.45);
+  color: rgba(250, 246, 239, 0.85);
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+.modalBody {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modalTitle {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-navy);
+  line-height: 1.35;
+}
+
+.modalSummary {
+  font-size: 15px;
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+.modalMeta {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.modalActions {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.originalLinkButton {
+  background: var(--color-mustard);
+  color: var(--color-navy);
+  font-weight: 700;
+  font-size: 14px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  flex: 1;
+  box-shadow: 0 0 0 0 var(--color-lime);
+  transition: box-shadow 150ms ease;
+}
+
+@media (hover: hover) {
+  .originalLinkButton:hover {
+    box-shadow: 0 0 0 3px var(--color-lime);
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.45);
+  color: var(--color-cream);
+  font-size: 16px;
+  line-height: 1;
+  z-index: 2;
+}
+
+.modalCaption {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.45);
+  color: var(--color-cream);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 999px;
+}
+
+@media (max-width: 640px) {
+  .backdrop {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .modal {
+    max-width: 100%;
+    max-height: 88vh;
+    border-radius: 16px 16px 0 0;
+    animation: sheet-up 260ms ease;
+  }
+
+  @keyframes sheet-up {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+}

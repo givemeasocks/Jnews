@@ -1,0 +1,310 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ---------- 헤더 ---------- */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 20px;
+  background: var(--color-cream);
+  border-bottom: 1px solid var(--color-border);
+  transition: padding 200ms ease;
+}
+
+.header.compact {
+  padding: 8px 20px;
+}
+
+.logoTitle {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--color-navy);
+  letter-spacing: -0.01em;
+}
+
+/* ---------- 히어로 / 검색 ---------- */
+.hero {
+  background: var(--color-navy);
+  padding: clamp(48px, 8vw, 96px) 20px;
+}
+
+.heroInner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.heroTitle {
+  font-size: clamp(28px, 4.5vw, 48px);
+  font-weight: 800;
+  color: var(--color-cream);
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+
+.heroSubtitle {
+  font-size: clamp(13px, 1.6vw, 15px);
+  color: #c9d0dd;
+  margin-bottom: 36px;
+}
+
+.searchForm {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  border-bottom: 2px solid #435377;
+  padding-bottom: 12px;
+  transition: border-color 200ms ease;
+}
+
+.searchForm:focus-within {
+  border-color: var(--color-mustard);
+}
+
+.searchInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--color-cream);
+  font-size: clamp(18px, 2.6vw, 28px);
+  font-weight: 600;
+}
+
+.searchInput::placeholder {
+  color: #7b88a5;
+}
+
+.searchButton {
+  background: var(--color-mustard);
+  color: var(--color-navy);
+  border: none;
+  border-radius: 4px;
+  padding: 10px 22px;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: 0 0 0 0 var(--color-lime);
+  transition: box-shadow 150ms ease;
+}
+
+.searchButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+@media (hover: hover) {
+  .searchButton:hover:not(:disabled) {
+    box-shadow: 0 0 0 3px var(--color-lime);
+  }
+}
+
+/* ---------- 인기 키워드 칩 ---------- */
+.chipSection {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 28px 20px 20px;
+}
+
+.chipHeading {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-navy);
+  margin-bottom: 12px;
+}
+
+.chipRow {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.chipRow::-webkit-scrollbar {
+  display: none;
+}
+
+.chip {
+  flex: 0 0 auto;
+  background: var(--color-cream);
+  color: var(--color-navy);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background 150ms ease, color 150ms ease, border-color 150ms ease,
+    transform 150ms ease;
+}
+
+@media (hover: hover) {
+  .chip:hover {
+    border-color: var(--color-lime);
+  }
+}
+
+.chip.active {
+  background: var(--color-mustard);
+  color: var(--color-cream);
+  border-color: var(--color-mustard);
+}
+
+.chip:active {
+  transform: scale(0.96);
+}
+
+/* ---------- 정렬 / 재검색 컨트롤 ---------- */
+.controls {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 20px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.sortGroup {
+  position: relative;
+  display: flex;
+}
+
+.sortButton {
+  position: relative;
+  background: transparent;
+  border: none;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  z-index: 1;
+}
+
+.sortButton.active {
+  color: var(--color-navy);
+}
+
+.sortUnderline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  height: 2px;
+  background: var(--color-lime);
+  transition: transform 220ms ease;
+}
+
+.sortUnderline.second {
+  transform: translateX(100%);
+}
+
+.refineInput {
+  background: var(--color-cream);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 13px;
+  color: var(--color-text);
+  min-width: 220px;
+  outline: none;
+  transition: border-color 150ms ease;
+}
+
+.refineInput:focus {
+  border-color: var(--color-mustard);
+}
+
+/* ---------- 결과 그리드 ---------- */
+.results {
+  flex: 1;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 20px 80px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.grid > :global(.featured) {
+  grid-column: 1 / -1;
+}
+
+.sentinel {
+  height: 1px;
+}
+
+.skeletonCard {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.skeletonImage {
+  aspect-ratio: 4 / 3;
+}
+
+.skeletonLines {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.skeletonLine {
+  height: 14px;
+}
+
+/* ---------- 타이포그래피 폭발 (10.2절) ---------- */
+.explosionOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-navy);
+  padding: 24px;
+  pointer-events: none;
+}
+
+.explosionText {
+  font-weight: 800;
+  color: var(--color-cream);
+  font-size: clamp(2.5rem, 16vw, 9rem);
+  text-align: center;
+  line-height: 1;
+  word-break: keep-all;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .refineInput {
+    width: 100%;
+  }
+}
