@@ -1,5 +1,5 @@
-const NAVY = "#06162b";
-const NAVY_LIGHT = "#2b3f66";
+const NAVY = "#050e1f";
+const NAVY_LIGHT = "#1f3050";
 const MUSTARD = "#e08a2c";
 const CREAM = "#faf6ef";
 const LIME = "#d4ff3d";
